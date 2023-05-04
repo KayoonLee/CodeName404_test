@@ -7,6 +7,6 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 <title>Insert title here</title>
 </head>
 <body>
-test
+  test
 </body>
 </html>
