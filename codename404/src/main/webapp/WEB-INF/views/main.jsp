@@ -1,0 +1,162 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodeName404</title>
+    <meta charset="utf-8">
+    
+    <!-- 반응형 웹 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    
+    <style>
+    #header {
+        margin-top: -20px;
+        width: 100%;
+        height: 500px;
+        background: url('./images/head.jpg') no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-bottom: 1px solid #A9A9A9;
+   	} 
+    </style>
+</head>
+<body>
+
+<!-- 전체 프레임 -->
+<div id="frame">
+    
+<!-- 네비게이션 바/부트스트랩 --> 
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+        
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                     
+        </button>
+        <a class="navbar-brand" href="index.html">CodeName404</a>
+    </div>
+        
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Notice</a></li>
+            <li><a href="#">FreeBoard</a></li><!-- active -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Study<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">모집중</a></li>
+                    <li><a href="#">모집완료</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Q&amp;A<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">해결</a></li>
+                    <li><a href="#">미해결</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+    
+</div>
+</nav>
+
+<!-- 헤더 --> <!-- #header css에 이미지 -->
+<div id="header">
+	<!-- <img src="./images/head.jpg"> -->
+</div> 
+    
+<!-- 헤더 밑 이름 -->            
+<h1 class="headline">CodeName 404</h1>
+
+<!-- content 내용 -->
+<div id="content">
+
+   <!-- 1. 소개 -->
+   <div id="introduce">
+      
+      	<!-- 먼저 왼쪽으로 날림 -->
+      	<div id="intro-image">
+           <img src="./images/muzik5.jpg">
+        </div>
+        
+        <!-- 오른쪽으로 날림 -->
+        <div id="intro-text">
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        </div>
+        
+        <!-- 왼쪽으로 또 날림 -->
+        <div id="spec">
+           <p> 이름: 
+            <br> 루카
+            <br> 모카
+            <br> 짜장
+            <br> 춘장
+            <br> 무지
+            <br> 특기: 우다다다다다다다~</p>
+        </div>
+   </div>
+    
+    <!-- 왼쪽/가운데/오른쪽 -->            
+   <div id="article">
+        <!-- 왼쪽 -->
+       <div id="left" class="column">
+           <img src="./images/muzik3.jpg">
+            <img src="./images/icon.png" class="icon"> <!-- 아이콘 이미지 -->
+            <h2>HAWL</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        </div>
+        <!-- 오른쪽 -->
+        <div id="right" class="column">
+           <img src="./images/muzik3.jpg">
+           <img src="./images/icon.png" class="icon">
+            <h2>HAWL</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        </div>
+        <!-- 가운데 -->
+          <div id="middle" class="column">
+             <img src="./images/muzik4.jpg">
+            <img src="./images/icon.png" class="icon">
+            <h2>HAWL</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      </div>
+   </div>
+
+</div> <!-- content 내용 end -->
+            
+<!-- footer -->
+<!-- <footer> </footer> -->
+<div id="footer">
+   <div id="social">
+      <img src="./images/sns.png">
+   </div>
+   <p class="russian">2023. CodeName404 ALL Right Reserved.</p>
+</div>
+    
+</div>
+
+</body>
+</html>
+
