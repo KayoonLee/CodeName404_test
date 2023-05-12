@@ -60,7 +60,6 @@
 					<c:if test="${not empty memberlist}">
 					<c:set var="num" value="${num }"></c:set>
 					<c:forEach var="member" items="${memberlist}">
-						<c:set var="date" value="${member.register }"></c:set>
 						<tr>
 							<td><c:out value="${num }"></c:out> <c:set var="num"
 									value="${num-1 }"></c:set></td>

@@ -18,25 +18,34 @@
 <!-- 검색 기능 -->
 
 <div class="container" style="border: dashed 1px red;" align="center">
-<form action="adminusers.manager">
-<input type="hidden" name="pageNum" value="1">
-  <h2>공지게시판</h2>    
-  <div class="search-wrapper" style="border: dashed 1px red;">
-	<select>
-		<option value="id"		<c:if test="${search=='subject'}">selected="selected" </c:if>>ID</option>
-		<option value="nick"	<c:if test="${search=='content'}">selected="selected" </c:if>>닉네임</option>
-		<option value="register"<c:if test="${search=='writer'}">selected="selected" </c:if>>가입일</option>
+			<form action="notice_list.notice">
+				<input type="hidden" name="pageNum">
+				<h2>공지사항 게시판</h2>
+				<p>회원들이 필독해야될 공지사항!!</p>
+			<div class="input-group">
+	<select class="form-control" name="search">
+		<option value="notice_subject" <c:if test="${search=='notice_subject'}">selected="selected"</c:if>>제목</option>
+		<option value="notice_content" <c:if test="${search=='notice_content'}">selected="selected"</c:if>>내용</option>
 	</select>
-	&nbsp;&nbsp;&nbsp; <!-- 한 칸 띄어쓰기 -->
-	<input type="text" name="keyword" placeholder="검색어를 입력하세요.">
-	<button type="submit">검색</button>
+	<input type="text" class="form-control" name="keyword" placeholder="Search">
+	<span class="input-group-btn">
+		<button class="btn btn-default" type="submit">
+			<i class="glyphicon glyphicon-search"></i>
+		</button>
+	</span>
 </div>
-</form>
+</form> <br>
+<div align="right">
+
+총 글개수 : ${bp.total} &nbsp;
+<a href="notice_list.notice"><button class="btn btn-success">전체글보기</button></a>
+<a href="${path}/insertForm" class="btn btn-info">글 입력</a>
+</div> <br>
       
   <table class="table table-striped">
     <thead>
       <tr>  
-	<th>NO</th>
+	<th>글번호</th>
 	<th>제목</th>
 	<th>작성자</th>
 	<th>작성일</th>
@@ -44,40 +53,74 @@
       </tr>
     </thead>
     <tbody>
-      <c:set var="num" value="${num }"></c:set>
-	<c:forEach var="notice" items="${notice_list}">
-	<tr>
-		<td>
-			${notice.notice_no }			
-		</td>
-		<td>
-		${notice.notice_subject}
-		</td>
-		<td>${notice.admin_nick }</td>
-		<td>
-		<fmt:formatDate value="${notice.notice_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
-		${notice.notice_date}
-		</td>
-		<td>${notice.notice_readcount}</td>	
-	</tr>
-	</c:forEach>
-    </tbody>
-  </table>
+  		<c:if test="${empty noticeList}">
+		  <tr>
+			<th colspan="5" align="center">데이터가 없습니다</th>
+		  </tr>
+		</c:if>
+		<c:if test="${not empty noticeList}">
+			<c:set var="num" value="${num }"></c:set>
+				<c:forEach var="noticeli" items="${noticeList}">
+					<tr>
+					<td><c:out value="${num }"></c:out> <c:set var="num"
+									value="${num-1 }"></c:set></td>
+							<!-- 제목에 링크 게시물 글번호랑 페이지 가져가야됨. -->
+					<td><a href="#" 
+								class="btn btn-default">${noticeli.notice_subject}</a></td>
+					<td>${noticeli.admin_nick }</td>
+					<td><fmt:formatDate value="${noticeli.notice_date}"
+									pattern="yyyy-MM-dd a HH:mm:ss EEE요일" /></td>
+					<td>${admin_nick.notice_readcount}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+    	</tbody>					
+  	</table>
 
-						<div align="center">
-							<a href="${path}/insertForm" class="btn btn-info">글 입력</a>
-						</div>
-					</div>
+	<ul class="pagination">
+	<!-- 검색 했을 경우의 페이징 처리 -->
+			 <c:if test="${not empty keyword}">
+			<li><a href="notice_list.notice?pageNum=1&search=${search}&keyword=${keyword}">첫번째 페이지</a></li>
+				<c:if test="${bp.currentPage > 1 }">
+					<li><a
+						href="notice_list.notice?pageNum=${bp.currentPage - 1}&search=${search}&keyword=${keyword}">이전</a></li>
+				</c:if>
+				<c:forEach var="i" begin="${bp.startPage}" end="${bp.endPage}">
+					<li <c:if test="${bp.currentPage==i}">class="active"</c:if>><a
+						href="notice_list.notice?pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a></li>
+				</c:forEach>
+				<c:if test="${bp.currentPage < bp.totalPage}">
+					<li><a
+						href="notice_list.notice?pageNum=${bp.currentPage + 1}&search=${search}&keyword=${keyword}">다음</a></li>
+				</c:if>
+				<li><a href="notice_list.notice?pageNum=${bp.totalPage }&search=${search}&keyword=${keyword}">마지막 페이지</a></li>
+			</c:if>
 
-				</div>
-			</div>
+	<!-- 전체 목록의 페이징 처리 -->
+				<c:if test="${empty keyword}">
+					<li><a href="notice_list.notice?pageNum=1">첫번째 페이지</a></li>
+					<c:if test="${bp.currentPage > 1 }">
+						<li><a
+							href="notice_list.notice?pageNum=${bp.currentPage - 1}">이전</a></li>
+					</c:if>
+					
+					<c:forEach var="i" begin="${bp.startPage}" end="${bp.endPage}" step="1">
+						<li <c:if test="${bp.currentPage==i}">class="active"</c:if>>
+							<a href="notice_list.notice?pageNum=${i}">${i}</a>
+						</li>
+					</c:forEach>
+					
+					<c:if test="${bp.currentPage < bp.totalPage }">
+						<li><a
+							href="notice_list.notice?pageNum=${bp.currentPage + 1}">다음</a></li>
+					</c:if>
+					<li><a href="notice_list.notice?pageNum=${bp.totalPage }">마지막
+							페이지</a></li>
+				</c:if>
+	</ul>				
 
-
-
-		</div>
-		<!-- content end -->
-	</div>
 	<!-- 스터디 게시판 컨테이너 end -->
+	</div>
 
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
