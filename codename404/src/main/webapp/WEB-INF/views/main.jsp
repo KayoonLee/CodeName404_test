@@ -50,10 +50,10 @@
         
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="#" onclick="location='notice_board.manager'">Notice</a></li> <!-- active -->
-            <li><a href="#" onclick="location='free_board.free'">FreeBoard</a></li>
-            <li><a href="#" onclick="location='study_board.study'">Study</a></li>
-            <li><a href="#" onclick="location='qna_board.qna'">Q&amp;A</a></li>
+            <li><a href="#" onclick="location='notice_list.notice'">Notice</a></li> <!-- active -->
+            <li><a href="#" onclick="location='free_list.free'">FreeBoard</a></li>
+            <li><a href="#" onclick="location='study_list.study'">Study</a></li>
+            <li><a href="#" onclick="location='qna_list.qna'">Q&amp;A</a></li>
             
 <!-- dropdown 기능 -->
 <!-- 
