@@ -6,6 +6,7 @@
 
 	<typeAliases><!-- 별칭설정 -->
 		<typeAlias alias="user" type="com.myproject.mycode.model.MemberDTO" />
+		<typeAlias alias="notice" type="com.myproject.mycode.model.NoticeBoardModel" />
 	</typeAliases>	
 		
 
