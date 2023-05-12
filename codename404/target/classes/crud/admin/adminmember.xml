@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myproject.mycode.dao.AdminDAO">
+
+	<select id="getMemberList" parameterType="user" resultType="user">
+	select * from (select rownum rnum,a.* from
+		(select * from member
+	<where>
+			<!-- 작성자, 제목, 내용으로 검색하는 경우 -->
+			<if test="keyword != null">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+	</where>
+			order by register desc) a)
+			where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getMemberCount" parameterType="user" resultType="int">
+	select count(*) from member <!-- 전체 데이터개수-->
+		
+		<!-- 검색어를 포함한 데이터 개수 -->
+		<where>
+			<!-- 작성자, 제목, 내용으로 검색하는 경우 -->
+			<if test="keyword != null">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<!-- 제목 + 내용으로 검색하는 경우 -->
+			<!-- <if test="keyword != null and search=='subcon'">
+				subject like '%'||#{keyword}||'%' or
+				content like '%'||#{keyword}||'%'
+			</if> -->
+		</where>
+	</select>
+
+	<select id="getMember" resultType="user">
+	select * from member where id=#{id}
+	</select>
+	
+	<delete id="userDelete">
+	delete from member where id=#{id}
+	</delete>
+	
+</mapper>

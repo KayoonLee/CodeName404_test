@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 
 <!DOCTYPE html>
 <html>
@@ -18,23 +20,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
+    <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     
     <style>
-    #header {
-        margin-top: -20px;
-        width: 100%;
-        height: 500px;
-        background: url('./images/head.jpg') no-repeat;
-        background-position: center center;
-        background-size: cover;
-        border-bottom: 1px solid #A9A9A9;
-   	} 
+	    #header {
+	        margin-top: -20px;
+	        width: 100%;
+	        height: 500px;
+	        background: url('./images/head.jpg') no-repeat;
+	        background-position: center center;
+	        background-size: cover;
+	        border-bottom: 1px solid #A9A9A9;
+	   	} 
     </style>
 </head>
 <body>
 
-<!-- 전체 프레임 -->
+<!------------------------------ 전체 프레임 ------------------------------>
 <div id="frame">
     
 <!-- 네비게이션 바/부트스트랩 --> 
@@ -42,27 +45,18 @@
 <div class="container-fluid">
         
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                     
-        </button>
-        <a class="navbar-brand" href="index.html">CodeName404</a>
+        <a class="navbar-brand" href="#" onclick="location='main.do'">CodeName404</a>
     </div>
         
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="#">Notice</a></li>
-            <li><a href="#">FreeBoard</a></li><!-- active -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Study<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">모집중</a></li>
-                    <li><a href="#">모집완료</a></li>
-                </ul>
-            </li>
+            <li><a href="#" onclick="location='notice_board.manager'">Notice</a></li> <!-- active -->
+            <li><a href="#" onclick="location='free_board.free'">FreeBoard</a></li>
+            <li><a href="#" onclick="location='study_board.study'">Study</a></li>
+            <li><a href="#" onclick="location='qna_board.qna'">Q&amp;A</a></li>
+            
+<!-- dropdown 기능 -->
+<!-- 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Q&amp;A<span class="caret"></span>
@@ -72,16 +66,34 @@
                     <li><a href="#">미해결</a></li>
                 </ul>
             </li>
+-->
         </ul>
         
+        	<!-- 로그아웃 상태 -->
+          <c:if test="${empty sessionScope.email }">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="#" onclick="location='signup_form.do'">
+            	<span class="glyphicon glyphicon-user"></span> SignUp</a>
+            </li>
+            <li><a href="#" onclick="location='login_form.do'">
+            	<span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
-    </div>
-    
+        </c:if>
+        
+        <!-- 로그인 상태 -->
+        <c:if test="${!empty sessionScope.email }">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="location='signup_form.do'">
+            	<span class="glyphicon glyphicon-user"></span>MyPage </a>
+            </li>
+            <li><a href="#" onclick="location='logout_form.do'">
+            	<span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+        </c:if>
+        
+    </div> 
 </div>
-</nav>
+</nav> 
 
 <!-- 헤더 --> <!-- #header css에 이미지 -->
 <div id="header">
@@ -147,7 +159,6 @@
 </div> <!-- content 내용 end -->
             
 <!-- footer -->
-<!-- <footer> </footer> -->
 <div id="footer">
    <div id="social">
       <img src="./images/sns.png">
@@ -156,6 +167,7 @@
 </div>
     
 </div>
+<!------------------------------ 전체 프레임 end ------------------------------>
 
 </body>
 </html>

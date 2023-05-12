@@ -5,9 +5,8 @@
 <configuration>
 
 	<typeAliases><!-- 별칭설정 -->
-		<!-- <typeAlias alias="" type="com.myproject.mycode.model." /> -->
-
+		<typeAlias alias="user" type="com.myproject.mycode.model.MemberDTO" />
 	</typeAliases>	
-	
+		
 
 </configuration>	
