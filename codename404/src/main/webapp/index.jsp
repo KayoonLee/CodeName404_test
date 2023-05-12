@@ -2,5 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <script>
-   location.href="main.do";
+   location.href="adminusers.manager";
 </script>
+
+<!-- <script>
+	location.href="main.do";
+</script> -->
