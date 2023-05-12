@@ -67,7 +67,6 @@ public class AdminController {
 	
 	@RequestMapping("adminuserdelete.manager")
 	public String userdelete(String id) {
-		System.out.println("test");
 		service.userDelete(id);
 		return "redirect:/adminusers.manager";
 	}
