@@ -14,9 +14,14 @@ public class NoticeBoardService{
 	@Autowired
 	private NoticeBoardDao boardDao;
 
-	public List<NoticeBoardModel> notice_list() throws Exception {
+	public List<NoticeBoardModel> noticeList(NoticeBoardModel noticeBoardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return boardDao.notice_list();
+		return boardDao.noticeList(noticeBoardDTO);
+	}
+
+	public int getNoticeBoardCount(NoticeBoardModel noticeBoardDTO) {
+		// TODO Auto-generated method stub
+		return boardDao.getNoticeBoardCount(noticeBoardDTO);
 	}
 
 	

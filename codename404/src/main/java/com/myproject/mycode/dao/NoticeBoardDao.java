@@ -6,7 +6,9 @@ import com.myproject.mycode.model.NoticeBoardModel;
 
 public interface NoticeBoardDao {
 	
-	public List<NoticeBoardModel> notice_list() ;
+	public List<NoticeBoardModel> noticeList(NoticeBoardModel noticeBoardDTO) ;
+
+	public int getNoticeBoardCount(NoticeBoardModel noticeBoardDTO);
 
 	}
 
