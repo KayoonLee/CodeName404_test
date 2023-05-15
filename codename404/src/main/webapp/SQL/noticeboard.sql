@@ -17,6 +17,7 @@ create table notice_board(
    notice_date date,
    notice_readcount number default 0
 )
+drop table notice_board purge;
 
 create sequence notice_board_num_seq
 increment by 1 start with 1 nocache;

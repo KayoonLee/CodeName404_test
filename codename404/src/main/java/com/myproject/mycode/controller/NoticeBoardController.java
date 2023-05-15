@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myproject.mycode.model.MemberDTO;
 import com.myproject.mycode.model.NoticeBoardModel;
 import com.myproject.mycode.service.NoticeBoardService;
 import com.myproject.mycode.service.adminPaging;
@@ -59,13 +59,63 @@ public class NoticeBoardController {
 	}
 
 	
+	// 글작성 폼
+			@RequestMapping("notice_InsertForm.notice")
+			public String noticeInsertForm() {
+				return "noticeboard/notice_InsertForm";
+			}
 	
+	// 글작성
+			@RequestMapping("notice_Insert.notice")
+			public String noticeInsert(NoticeBoardModel noticeBoardDTO) {
+			service.noticeInsert(noticeBoardDTO);
+			return "redirect:notice_list.notice";
+			}
 	
+	// 상세페이지
+	@RequestMapping("notice_View.notice")
+	public String noticeView(Integer notice_no, String pageNum, Model model) {
+		
+		service.updateRe(notice_no); // updateRe
+		NoticeBoardModel noticeboard = service.noticeView(notice_no); // 상세정보
+		
+		model.addAttribute("noticeboard", noticeboard);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "noticeboard/notice_View";
+	}
 	
+	// 글수정 폼
+	@RequestMapping("notice_UpdateForm.notice")
+	public String noticeUpdateForm(Integer notice_no, String pageNum, Model model) {
+		service.updateRe(notice_no); // updateRe
+		NoticeBoardModel noticeboard = service.noticeView(notice_no); // 상세정보
+		
+		model.addAttribute("noticeboard", noticeboard);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "noticeboard/notice_UpdateForm";
+		
+	}
 	
+	// 글수정
+	@RequestMapping("notice_Update.notice")
+	public String noticeUpdate(NoticeBoardModel noticeBoardDTO, String pageNum) {
+		System.out.println("update 컨트롤러 들어옴");
+		service.noticeUpdate(noticeBoardDTO);
+		System.out.println("수정된 내용"+noticeBoardDTO.getNotice_content());
+		
+		return "redirect:/notice_View.notice?notice_no="+noticeBoardDTO.getNotice_no();
+		// return "redirect:/notice_View.notice?notice_no="+notice_no+"&pageNum="+pageNum;
+		
+	}
 	
-	
-	
-	
+	// 글삭제
+	@RequestMapping("notice_Delete.notice")
+	public String noticeDelete(NoticeBoardModel noticeBoardDTO) {
+		service.noticeDelete(noticeBoardDTO);
+		
+		return "redirect:/notice_list.notice";
+	}
 	
 }

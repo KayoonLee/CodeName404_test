@@ -39,7 +39,7 @@
 
 총 글개수 : ${bp.total} &nbsp;
 <a href="notice_list.notice"><button class="btn btn-success">전체글보기</button></a>
-<a href="${path}/insertForm" class="btn btn-info">글 입력</a>
+<a href="notice_InsertForm.notice" class="btn btn-info">글 입력</a>
 </div> <br>
       
   <table class="table table-striped">
@@ -65,12 +65,12 @@
 					<td><c:out value="${num }"></c:out> <c:set var="num"
 									value="${num-1 }"></c:set></td>
 							<!-- 제목에 링크 게시물 글번호랑 페이지 가져가야됨. -->
-					<td><a href="#" 
+					<td><a href="notice_View.notice?notice_no=${noticeli.notice_no}&pageNum=${bp.currentPage}" 
 								class="btn btn-default">${noticeli.notice_subject}</a></td>
 					<td>${noticeli.admin_nick }</td>
 					<td><fmt:formatDate value="${noticeli.notice_date}"
 									pattern="yyyy-MM-dd a HH:mm:ss EEE요일" /></td>
-					<td>${admin_nick.notice_readcount}</td>
+					<td>${noticeli.notice_readcount}</td>
 					</tr>
 				</c:forEach>
 			</c:if>

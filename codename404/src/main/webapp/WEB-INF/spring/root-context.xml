@@ -28,7 +28,7 @@
    
    <!-- mybatis3를 쓸경우 필요가 없다. -->
    <bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg index="0" ref="sqlSessionFactory" />
+      <constructor-arg index="0" name="sqlSessionFactory" ref="sqlSessionFactory" />
    </bean>
    
    <!-- mapper interface의  package설정 -->

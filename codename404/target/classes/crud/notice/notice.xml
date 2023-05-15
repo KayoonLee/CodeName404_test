@@ -19,12 +19,13 @@
 	
 
 	<!-- create -->
-	<insert id="notice_insert" parameterType="notice">
+	<insert id="noticeInsert" parameterType="notice">
 		insert into notice_board
 		(notice_no,admin_nick,notice_subject,
 		notice_content,notice_date,notice_readcount)
 		values
-		(notice_board_seq.nextval,#{admin_nick},#{notice_subject},
+		
+		(notice_board_num_seq.nextval,'admin',#{notice_subject},
 		#{notice_content},SYSDATE,0)
 	</insert>
 
@@ -47,30 +48,30 @@
 	</select>
 
 	<!-- read -->
-	<select id="notice_read" resultType="notice" parameterType="notice">
+	<select id="noticeView" resultType="notice" parameterType="int">
 		select * from notice_board where notice_no=#{notice_no}
 	</select>
 
+	<!-- readcount 증가 -->
+	<update id="updateRe" parameterType="notice">
+		update notice_board set notice_readcount=notice_readcount+1
+		where notice_no=#{notice_no}
+	</update>
 
 	<!-- update -->
-	<update id="notice_update" parameterType="notice" >
+	<update id="noticeUpdate" parameterType="notice" >
 		update notice_board set
 		notice_subject=#{notice_subject},
-		notice_content=#{notice_content},
-		notice_date=#{notice_date},
+		notice_content=#{notice_content}
 		where notice_no=#{notice_no}
 	</update>
 
 	<!-- delete -->
-	<delete id="notice_delete" parameterType="notice">
+	<delete id="noticeDelete" parameterType="notice">
 		delete from notice_board where notice_no=#{notice_no}
 	</delete>
 
-	<!-- readcount 증가 -->
-	<update id="notice_readcount" parameterType="notice">
-		update notice_board set notice_readcount=notice_readcount+1
-		where notice_no=#{notice_no}
-	</update>
+	
 
 </mapper>
 

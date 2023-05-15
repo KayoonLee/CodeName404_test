@@ -24,14 +24,33 @@ public class NoticeBoardService{
 		return boardDao.getNoticeBoardCount(noticeBoardDTO);
 	}
 
+	public void noticeInsert(NoticeBoardModel noticeBoardDTO) {
+		// TODO Auto-generated method stub
+		boardDao.noticeInsert(noticeBoardDTO);;
+	}
 	
+	// 조회수증가
+	public void updateRe(int notice_no) {
+		// TODO Auto-generated method stub
+		boardDao.updateRe(notice_no);
+	}
 	
-	
-
-	
+	// 상세정보
+	public NoticeBoardModel noticeView(int notice_no) {
+		NoticeBoardModel noticeBoardDTO = boardDao.noticeView(notice_no);
 		
+		return noticeBoardDTO;
+	}
 	
 	
+	public void noticeUpdate(NoticeBoardModel noticeBoardDTO) {
+		// TODO Auto-generated method stub
+		boardDao.noticeUpdate(noticeBoardDTO);
+		
+	}
 	
+	public void noticeDelete(NoticeBoardModel noticeBoardDTO) {
+		boardDao.noticeDelete(noticeBoardDTO);
+	}
 
 }
