@@ -23,3 +23,27 @@ drop table notice_board purge;
 
 create sequence notice_board_num_seq
 increment by 1 start with 1 nocache;
+
+
+-- 댓글테이블
+
+select * from notice_reply;
+
+create table notice_reply(
+	notice_rno number(20) primary key,
+	notice_no number(20),
+	notice_renick varchar2(20) not null,
+	notice_replycontent varchar2(2000) not null,
+	notice_regdate date,
+	CONSTRAINT fk_notice_board_notice_no
+      FOREIGN KEY (notice_no)
+      REFERENCES notice_board(notice_no)
+      ON DELETE CASCADE
+	
+);
+
+insert into NOTICE_REPLY 
+values(notice_replynum_seq.nextval,21,'admin@naver.com','왜안돼..',sysdate);
+
+create sequence notice_replynum_seq
+increment by 1 start with 1 nocache;

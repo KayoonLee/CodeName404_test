@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myproject.mycode.model.NoticeBoardModel;
+import com.myproject.mycode.model.NoticeReplyModel;
 import com.myproject.mycode.service.NoticeBoardService;
+import com.myproject.mycode.service.NoticeReplyService;
 import com.myproject.mycode.service.adminPaging;
 
 
@@ -18,6 +20,7 @@ import com.myproject.mycode.service.adminPaging;
 @Controller
 public class NoticeBoardController {
 	@Autowired NoticeBoardService service;
+	@Autowired NoticeReplyService replyservice;
 	
 	
 	// 리스트
@@ -116,6 +119,42 @@ public class NoticeBoardController {
 		service.noticeDelete(noticeBoardDTO);
 		
 		return "redirect:/notice_list.notice";
+	}
+	
+//	 댓글noticereply.notice
+	@RequestMapping("noticereply.notice")
+	public String noticeReplyList(int notice_no, Model model) {
+		NoticeBoardModel notice = service.noticeView(notice_no);
+		System.out.println("댓글 테이블 로드");
+		List<NoticeReplyModel> noticereplist = replyservice.getReplyList(notice_no);
+		
+		model.addAttribute("notice", notice);
+		model.addAttribute("noticereplist", noticereplist);
+		
+		return "noticeboard/notice_replylist";
+	}
+	// 댓글 insert
+	@RequestMapping("noticereplyinsert.notice")
+	public String noticeReplyInsert(NoticeReplyModel noticereplyDto) {
+		replyservice.noticeRepInsert(noticereplyDto);
+		
+		return "redirect:/noticereply.notice?notice_no=" + noticereplyDto.getNotice_no();
+	}
+	
+	// 댓글 update
+	@RequestMapping("noticereplyupdate.notice")
+	public String noticeReplyUpdate(NoticeReplyModel noticereplyDto) {
+		replyservice.noticeRepUpdate(noticereplyDto);
+		
+		return "redirect:/noticereply.notice?notice_no=" + noticereplyDto.getNotice_no();
+	}
+	
+	// 댓글 delete
+	@RequestMapping("noticereplydelete.notice")
+	public String noticeReplyDelete(NoticeReplyModel noticereplyDto) {
+		replyservice.noticeRepDelete(noticereplyDto.getNotice_rno());
+		
+		return "redirect:/noticereply.notice?notice_no=" + noticereplyDto.getNotice_no();
 	}
 	
 }
