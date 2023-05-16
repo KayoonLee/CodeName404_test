@@ -54,7 +54,7 @@
         <div class="modal-footer">
          <!-- 페이지 갖고 가야되는데 아직 안함. -->
           
-          <button type="submit" class="btn btn-danger">확인</button>         
+          <button type="submit" class="btn btn-warning">확인</button>         
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
