@@ -2,9 +2,11 @@ insert into notice_board(notice_no,admin_nick,notice_subject,notice_content,
                   notice_date)
 values(notice_board_num_seq.nextval,'admin@naver.com', '테스트입니다', '테스트입니다', sysdate);
 
-insert into notice_board(notice_no,admin_nick,notice_subject,notice_content,
+INSERT INTO notice_board (notice_no,admin_nick,notice_subject,notice_content,
                   notice_date)
-values(notice_board_num_seq.nextval,'admin@naver.com', '제목입니다', '내용입니다', sysdate);
+SELECT notice_board_num_seq.nextval,'nick'||level, '제목'||level, '내용'||level, SYSDATE
+FROM dual
+CONNECT BY level <= 65;
 
 select * from notice_board;
 select * from seq;
