@@ -5,9 +5,12 @@
 <configuration>
 
 	<typeAliases><!-- 별칭설정 -->
-		<typeAlias alias="user" type="com.myproject.mycode.model.MemberDTO" />
+		<typeAlias alias="member" type="com.myproject.mycode.model.MemberModel" />
 		<typeAlias alias="notice" type="com.myproject.mycode.model.NoticeBoardModel" />
 		<typeAlias alias="noticereply" type="com.myproject.mycode.model.NoticeReplyModel" />
+		<typeAlias alias ="admin" type="com.myproject.mycode.model.AdminModel"/>
+		<typeAlias alias="singo" type="com.myproject.mycode.model.SingoModel" />
+		<typeAlias alias="report" type="com.myproject.mycode.model.ReportReasonModel" />
 	</typeAliases>	
 		
 

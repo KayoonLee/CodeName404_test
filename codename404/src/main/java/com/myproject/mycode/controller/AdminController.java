@@ -2,12 +2,16 @@ package com.myproject.mycode.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myproject.mycode.model.MemberDTO;
+import com.myproject.mycode.model.AdminModel;
+import com.myproject.mycode.model.MemberModel;
 import com.myproject.mycode.service.AdminService;
 import com.myproject.mycode.service.adminPaging;
 
@@ -16,10 +20,44 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService service;
+	
+	
+	// 관리자 로그인
+			@RequestMapping("/adminlogin.manager")
+			public String member_login(@RequestParam("admin_id") String admin_id,
+									   @RequestParam("admin_passwd") String admin_passwd,
+									   HttpSession session,
+									   //MemberModel member
+									   Model model) {
+				
+				int result = 0;
+				AdminModel adminmodel = service.adminCheck(admin_id);
+				//MemberModel memberModel = ms.userCheck(id);
+				
+				if(adminmodel == null) { // 등록되지 않은 회원인 경우
+					result = 1;
+					model.addAttribute("result", result);
+					return "admin/adminloginResult";
+					
+				} else {	 // 등록된 회원인 경우
+					if(adminmodel.getAdmin_passwd().equals(admin_passwd)) {	// 비번이 같은 경우
+						// session.setAttribute("email", email);
+						session.setAttribute("adminmodel", adminmodel);
+						String adminnick = adminmodel.getAdmin_nick();
+						model.addAttribute("adminnick", adminnick);
+						return "main";
+						
+				} else {	// 비밀번호가 다른 경우
+					result = 2;
+					model.addAttribute("result", result);
+					return "admin/adminloginResult";
+				}
+			}
+		}
 
 	// 회원정보 리스트
 	@RequestMapping("adminusers.manager")
-	public String userList(String pageNum, MemberDTO users, Model model) {
+	public String userList(String pageNum, MemberModel users, Model model) {
 		
 		final int pageDataCount = 10;	// 화면에 출력할 데이터 갯수
 		if (pageNum == null || pageNum.equals("")) {
@@ -44,7 +82,7 @@ public class AdminController {
 		
 		int num = total - startRow + 1;
 		
-		List<MemberDTO> memberlist = service.getMemeberList(users);
+		List<MemberModel> memberlist = service.getMemeberList(users);
 		model.addAttribute("memberlist", memberlist);
 		model.addAttribute("ap", ap);
 		model.addAttribute("num", num);
@@ -58,7 +96,7 @@ public class AdminController {
 	// 회원 상세보기 정보
 	@RequestMapping("adminuserinfo.manager")
 	public String userInfo(String pageNum, String id, Model model) {
-		MemberDTO memberinfo = service.getMember(id);
+		MemberModel memberinfo = service.getMember(id);
 		model.addAttribute("memberinfo", memberinfo);
 		model.addAttribute("pageNum", pageNum);
 		

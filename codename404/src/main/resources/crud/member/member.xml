@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0// EN" " http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myproject.mycode.dao.MemberDao">
+	<!-- crud 입력 -->
+	
+	<!-- 회원저장 --> <!-- DAO // mapper -->
+	<insert id="insert" parameterType="member"> <!-- dao // configuration.xml 별칭 -->
+		insert into member (id, passwd, nick, register) values (#{id}, #{passwd}, #{nick}, sysdate) 
+	</insert>
+	
+	<!-- 로그인 인증 -->
+	<select id="userCheck" parameterType="String" resultType="member">
+		select * from member where id=#{id}
+	</select>
+
+	<!-- 신고 받은 글작성자 singo_count + 1 -->
+	<update id="updateSingoCount" parameterType="String">
+	update member set singo_count = singo_count +1 where nick = #{qna_nick}
+	</update>
+
+</mapper>

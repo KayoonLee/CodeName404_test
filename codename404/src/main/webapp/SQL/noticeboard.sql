@@ -1,6 +1,8 @@
 insert into notice_board(notice_no,admin_nick,notice_subject,notice_content,
                   notice_date)
-values(notice_board_num_seq.nextval,'admin@naver.com', '테스트입니다', '테스트입니다', sysdate);
+values(notice_board_num_seq.nextval,'관리자', '테스트입니다', '테스트입니다', sysdate);
+
+select * from notice_board;
 
 INSERT INTO notice_board (notice_no,admin_nick,notice_subject,notice_content,
                   notice_date)

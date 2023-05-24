@@ -9,20 +9,20 @@
 </head>
 <body>
 	<jsp:include page="../navigator.jsp"></jsp:include>
-	<h1>공지 게시글 상세페이지</h1>
 	<div class="container" align="center">
 		<h2 class="text-primary">게시글 수정</h2>
+		<br>
 		<form
 			action="notice_Update.notice?notice_no=${noticeboard.notice_no}&pageNum=${pageNum}"
 			method="post" class="form-group">
 			<table class="table table-bordered">
 				<tr>
-					<td>글 제목</td>
+					<td align="center"><h4 class="text-primary">글 제목</h4></td>
 					<td><input name="notice_subject" id="notice_subject" size="40" 
 						class="form-control" value="${noticeboard.notice_subject }"  required="required"/></td>
 				</tr>
 				<tr>
-					<td>글 내용</td>
+					<td align="center"><h4 class="text-primary">글 내용</h4></td>
 					<td><textarea style="resize: none;" cols="40" rows="10" name="notice_content" class="form-control"
 							id="notice_content" required="required">${noticeboard.notice_content }</textarea></td>
 				</tr>

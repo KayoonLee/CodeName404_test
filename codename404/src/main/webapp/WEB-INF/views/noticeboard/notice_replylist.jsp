@@ -15,13 +15,13 @@
 		$('.editreply').click(function() {
 			var id  = $(this).attr('id');  // rno
 			var txt = $('#td_'+id).text(); // replytext
-			$('#td_'+id).html("<textarea rows='3' cols='30' id='tt_"+id+"'>"+txt
+			$('#td_'+id).html("<textarea style='resize: none;' rows='3' cols='30' id='tt_"+id+"'>"+txt
 				+"</textarea>");
 			
 			// 수정, 삭제 버튼을 확인, 취소버튼으로 수정
 			$('#btn_'+id).html(
 			   "<input type='button' value='확인' class='btn btn-primary' onclick='up("+id+")'> "
-			  +"<input type='button' value='취소' class='btn btn-danger' onclick='lst()'>");
+			  +"<input type='button' value='취소' class='btn btn-danger'  onclick='lst()'>");
 		});
 	});
 	
@@ -41,10 +41,11 @@
 	}
 	
 	// 취소 버튼 클릭
-	function lst() {
-		$('#noticereplist').load('noticereply.notice?notice_no=${notice.notice_no}');
-	}
-	
+	 function lst() {
+		 $('#noticereplist').load('noticereply.notice?notice_no=${notice.notice_no}');
+		}
+	 
+		
 	// 댓글 삭제
 	function del(notice_rno,notice_no) {
 		var formData="notice_rno="+notice_rno+"&notice_no="+notice_no;
@@ -58,18 +59,19 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="text-primary">댓글</h2>
-		<table class="table table-bordered">
-			<tr>
-				<td>작성자 닉네임</td>
-				<td>내용</td>
-				<td>수정일</td>
-				<td></td>
-			</tr>
 			<c:if test="${empty noticereplist }">
-			<tr><th colspan="4" align="center">댓글이 없습니다.</th></tr>
 			</c:if>
+		<table class="table table-bordered">
 			<c:if test="${not empty noticereplist }">
+			<h2 class="text-primary">댓글</h2>
+			<br>
+			<tr>
+				<th>댓글 작성자</th>
+				<th>내용</th>
+				<th>수정일</th>
+				<th>수정·삭제여부</th>
+				
+			</tr>
 			<c:forEach var="noticerep" items="${noticereplist}">
 				<tr>
 					<td>${noticerep.notice_renick}</td>
@@ -77,14 +79,21 @@
 					<td>
 					<fmt:formatDate value="${noticerep.notice_regdate }" pattern="yyyy-MM-dd HH:mm:ss EEE요일"/>
 					</td>
+					
 					<td id="btn_${noticerep.notice_rno}">
-						<c:if test="${noticerep.notice_renick==notice.admin_nick }">
+						<c:if test="${noticerep.notice_renick==memberModel.nick }">							
 							<input type="button" value="수정" class="editreply" id="${noticerep.notice_rno}">
-							<input type="button" value="삭제"	 onclick="del(${noticerep.notice_rno},${noticerep.notice_no})">
-						</c:if></td>
+							<input type="button" value="삭제"	 onclick="del(${noticerep.notice_rno},${noticerep.notice_no})">					
+						</c:if>
+						<c:if test="${!empty adminmodel.admin_nick}">							
+							<input type="button" value="수정" class="editreply" id="${noticerep.notice_rno}">
+							<input type="button" value="삭제"	 onclick="del(${noticerep.notice_rno},${noticerep.notice_no})">					
+						</c:if>
+						</td>
 				</tr>
 			</c:forEach>
 			</c:if>
+			<!-- notice.admin_nick말고 일반회원의 session nick값으로 변경해야됨 -->
 		</table>
 	</div>
 

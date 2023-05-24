@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
 
@@ -69,25 +69,39 @@
 -->
         </ul>
         
+        <!-- 관리자 로그인 -->
+        <c:if test="${!empty adminmodel.admin_id }">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="location='adminusers.manager'">
+            	<span class="glyphicon glyphicon-user"></span>&nbsp;관리자페이지</a>
+            </li>
+            <li><a href="#" onclick="location='logout_form'">
+            	<span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+        </ul>
+        </c:if>
+        
+        
         	<!-- 로그아웃 상태 -->
-          <c:if test="${empty sessionScope.email }">
+        	<%-- <c:if test="${empty sessionScope.email }"> --%>
+          <c:if test="${empty memberModel.id and empty adminmodel.admin_id}">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#" onclick="location='signup_form.do'">
             	<span class="glyphicon glyphicon-user"></span> SignUp</a>
-            </li>
-            <li><a href="#" onclick="location='login_form.do'">
+            </li><!-- login_form.do -->
+            <li><a href="#" onclick="location='separatelogin.do'">
             	<span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
         </c:if>
         
         <!-- 로그인 상태 -->
-        <c:if test="${!empty sessionScope.email }">
+        <%-- <c:if test="${empty sessionScope.email }"> --%>
+        <c:if test="${!empty memberModel.id}">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#" onclick="location='signup_form.do'">
-            	<span class="glyphicon glyphicon-user"></span>MyPage </a>
+            	<span class="glyphicon glyphicon-user"></span>&nbsp;${memberModel.nick}의 마이페이지</a>
             </li>
-            <li><a href="#" onclick="location='logout_form.do'">
-            	<span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <li><a href="#" onclick="location='logout_form'">
+            	<span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
         </ul>
         </c:if>
         

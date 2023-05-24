@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -74,6 +75,8 @@
 		<div class="container">
 			<a href="notice_list.notice?pageNum=${pageNum}"><button
 					class="btn btn-primary">목록</button></a> &nbsp;&nbsp; 
+				
+				<c:if test="${noticeboard.admin_nick eq adminmodel.admin_nick }">
 				<a href="notice_UpdateForm.notice?notice_no=${noticeboard.notice_no}&pageNum=${pageNum}">
 				<button class="btn btn-info">수정</button>
 			</a> &nbsp;&nbsp;
@@ -81,7 +84,8 @@
 			<!-- Trigger the modal with a button -->
 			<button type="button" class="btn btn-danger" data-toggle="modal"
 				data-target="#myModal">삭제</button>
-
+			
+				
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
@@ -105,8 +109,9 @@
 					</div>
 				</div>
 			</div>
-
+				
 			&nbsp;&nbsp;
+			</c:if>
 
 			<button type="button" class="btn btn-success" id="showdemoreply"
 				data-toggle="collapse" data-target="#demoreply"
@@ -120,9 +125,11 @@
 				<br>
 				<form name="frm" id="frm" class="form-inline">
 					<div class="form-group">
+
 						<input type="hidden" name="notice_renick"
-							value="${noticeboard.admin_nick}"> <input type="hidden"
-							name="notice_no" value="${noticeboard.notice_no}"> <label
+							value="${memberModel.nick}"> 
+							
+							<input type="hidden" name="notice_no" value="${noticeboard.notice_no}"> <label
 							for="notice_replycontent">댓글 :</label>
 						<textarea style='resize: none;' class="form-control" rows="3"
 							cols="50" name="notice_replycontent"></textarea>
@@ -141,10 +148,13 @@
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 	<script>
-		$("#noticeDeleteBtn").on('click',function(e) {
-			e.preventDefault();
-			self.location = "notice_Delete.notice?notice_no=${noticeboard.notice_no}";
-		});
+		$("#noticeDeleteBtn")
+				.on(
+						'click',
+						function(e) {
+							e.preventDefault();
+							self.location = "notice_Delete.notice?notice_no=${noticeboard.notice_no}";
+						});
 	</script>
 </body>
 </html>

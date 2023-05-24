@@ -15,35 +15,40 @@
 	</div>
 	<div class="container" align="center">
 		<h2 class="text-primary">회원 상세정보</h2>
+		<br>
 		<table class="table table-bordered">
 			<tr>
-				<td>ID</td>
+				<td align="center"><h4 class="text-primary">ID</h4></td>
 				<td>${memberinfo.id}</td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
+				<td align="center"><h4 class="text-primary">닉네임</h4></td>
 				<td>${memberinfo.nick}</td>
 			</tr>
 			<tr>
-				<td>가입일</td>
+				<td align="center"><h4 class="text-primary">가입일</h4></td>
 				<td><fmt:formatDate value="${memberinfo.register}"
 						pattern="yyyy-MM-dd a HH:mm:ss EEE요일" /></td>
 			</tr>
 			<tr>
-				<td>자기소개</td>
+				<td align="center"><h4 class="text-primary">자기소개</h4></td>
 				<td>${memberinfo.intro}</td>
 			</tr>
 			<tr>
-				<td>일반회원/탈퇴회원</td>
+				<td align="center"><h4 class="text-primary">일반회원/탈퇴회원</h4></td>
 				<td><c:if test="${memberinfo.state == 1 }">일반회원</c:if> <c:if
 						test="${memberinfo.state != 1 }">탈퇴회원</c:if></td>
 			</tr>
 			<tr>
 					<!-- 페이지 가지고 가야됨 -->
-				<td colspan="2" align="center"><a href="adminusers.manager?pageNum=${pageNum}">
-						<button type="button" class="btn btn-info">회원목록</button>
+				<td colspan="2" align="center">
+				<a href="adminusers.manager?pageNum=${pageNum}">
+					<button type="button" class="btn btn-info">회원목록</button>
 				</a>
-					<button type="button" class="btn btn-warning">신고글보기</button>
+				&nbsp;&nbsp;
+					<a href="singo_list.singo?singo_nick=${memberinfo.nick}">
+					<button type="button" class="btn btn-warning">신고글보기</button></a>
+					&nbsp;&nbsp;
 
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">회원강퇴</button>

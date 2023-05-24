@@ -7,9 +7,9 @@
 <meta charset="utf-8">
 <title>Login Board</title>
 
-<!-- loginstyle.css -->
-<jsp:include page="../bootstrap.jsp"></jsp:include>
-
+<!-- studystyle.css -->
+<link rel="stylesheet" type="text/css" href="./css/login/loginstyle.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 
@@ -20,9 +20,9 @@
 		<!-- 네비게이션 바/부트스트랩 -->
 		<jsp:include page="../navigator.jsp"></jsp:include>
 
-		<div>
+		<div class="container">
 
-			<form action=login.do method=post>
+			<form action=login_form method=post>
 				<h1>로그인</h1>
 				<div class="input-field">
 					<input type="text" id="id" name="id" placeholder="이메일을 입력해주세요" /> <i

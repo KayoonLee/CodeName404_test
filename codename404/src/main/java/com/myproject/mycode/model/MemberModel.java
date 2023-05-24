@@ -6,7 +6,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class MemberDTO {
+public class MemberModel {
 
 	private String id;
 	private String nick;

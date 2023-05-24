@@ -11,7 +11,7 @@
 <body>
    <h1>비밀번호 찾기</h1>
    <form>
-      <label for="email">가입한 ID</label>
+      <label for="email">가입한 이메일</label>
       <input type="email" id="id" name="id" required>
 
       <input type="submit" value="임시 비밀번호 발송">

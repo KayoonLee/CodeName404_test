@@ -39,7 +39,9 @@
 
 총 글개수 : ${bp.total} &nbsp;
 <a href="notice_list.notice"><button class="btn btn-success">전체글보기</button></a>
+<c:if test="${!empty adminmodel.admin_id }">
 <a href="notice_InsertForm.notice" class="btn btn-info">글 입력</a>
+</c:if>
 </div> <br>
       
   <table class="table table-striped">

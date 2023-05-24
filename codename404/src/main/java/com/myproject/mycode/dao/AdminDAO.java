@@ -2,15 +2,18 @@ package com.myproject.mycode.dao;
 
 import java.util.List;
 
-import com.myproject.mycode.model.MemberDTO;
+import com.myproject.mycode.model.AdminModel;
+import com.myproject.mycode.model.MemberModel;
 
 public interface AdminDAO {
+	
+	public AdminModel adminCheck(String admin_id);
 
-	List<MemberDTO> getMemberList(MemberDTO users);
+	List<MemberModel> getMemberList(MemberModel users);
 
-	int getMemberCount(MemberDTO users);
+	int getMemberCount(MemberModel users);
 
-	MemberDTO getMember(String id);
+	MemberModel getMember(String id);
 
 	void userDelete(String id);
 

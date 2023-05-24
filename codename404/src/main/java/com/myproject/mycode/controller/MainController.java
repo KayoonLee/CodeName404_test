@@ -1,6 +1,8 @@
 package com.myproject.mycode.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,30 +14,18 @@ public class MainController {
 	public String mainpage() {
 		return "main";
 	}
-
-//	/* 공지사항 게시판 뷰 */
-//	@RequestMapping(value = "/notice_board.do") // <- main.jsp
-//	String notice_board() {
-//		return "noticeboard/notice_board"; // -> notice_board.jsp
-//	}
-//
-//	/* 자유게시판 뷰 */
-//	@RequestMapping(value = "/free_board.do") // <- main.jsp
-//	public String free_board() {
-//		return "freeboard/free_board"; // -> free_board.jsp
-//	}
-//
-//	/* 스터디 게시판 뷰 */
-//	@RequestMapping(value = "/study_board.do") // <- main.jsp
-//	public String study_board() {
-//		return "studyboard/study_board"; // -> study_board.jsp
-//	}
-//
-//	/* QnA 게시판 뷰 */
-//	@RequestMapping(value = "/qna_board.do") // <- main.jsp
-//	public String qna_board() {
-//		return "qnaboard/qna_board"; // -> qna_board.jsp
-//	}
+	
+	// 관리자 로그인 폼
+	@RequestMapping("adminloginform.do")
+	public String adminLoginForm() {
+		return "admin/adminloginform";
+	}
+	
+	// 관리자와 일반회원 나눠놓음
+	@RequestMapping("separatelogin.do")
+	public String separateLogin() {
+		return "separatelogin";
+	}
 
 	/* 로그인 폼 */
 	@RequestMapping(value = "/login_form.do") // <- main.jsp
@@ -49,6 +39,14 @@ public class MainController {
 		return "loginform/signup_form"; // -> signup_form.jsp
 	}
 
+	// 로그아웃
+		@RequestMapping("/logout_form")
+		public String logout(HttpSession session) {
+			session.invalidate();
+			
+			return "loginform/logout_form";
+		}
+	
 //	/* 비밀번호 찾기 폼 */
 //	@RequestMapping(value = "/findPassword.do") // <- login_form.jsp
 //	public String findPassword_form() {

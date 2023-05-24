@@ -4,7 +4,11 @@
 
 <mapper namespace="com.myproject.mycode.dao.AdminDAO">
 
-	<select id="getMemberList" parameterType="user" resultType="user">
+<select id="adminCheck" parameterType="String" resultType="admin">
+select * from adminmember where admin_id = #{admin_id}
+</select>
+
+	<select id="getMemberList" parameterType="member" resultType="member">
 	select * from (select rownum rnum,a.* from
 		(select * from member
 	<where>
@@ -17,7 +21,7 @@
 			where rnum between #{startRow} and #{endRow}
 	</select>
 	
-	<select id="getMemberCount" parameterType="user" resultType="int">
+	<select id="getMemberCount" parameterType="member" resultType="int">
 	select count(*) from member <!-- 전체 데이터개수-->
 		
 		<!-- 검색어를 포함한 데이터 개수 -->
@@ -34,7 +38,7 @@
 		</where>
 	</select>
 
-	<select id="getMember" resultType="user">
+	<select id="getMember" resultType="member">
 	select * from member where id=#{id}
 	</select>
 	
