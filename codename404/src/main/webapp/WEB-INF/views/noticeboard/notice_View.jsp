@@ -112,11 +112,21 @@
 				
 			&nbsp;&nbsp;
 			</c:if>
-
+			
+			<c:choose>
+			<c:when test="${!empty memberModel}">
 			<button type="button" class="btn btn-success" id="showdemoreply"
 				data-toggle="collapse" data-target="#demoreply"
 				aria-expanded="false" aria-controls="demoreply">댓글</button>
 			&nbsp;&nbsp;
+			</c:when>
+			<c:when test="${!empty adminmodel}">
+			<button type="button" class="btn btn-success" id="showdemoreply"
+				data-toggle="collapse" data-target="#demoreply"
+				aria-expanded="false" aria-controls="demoreply">댓글</button>
+			&nbsp;&nbsp;
+			</c:when>
+			</c:choose>
 			<button type="button" id="hiderepInsert" class="btn btn-warning">댓글창
 				숨기기</button>
 

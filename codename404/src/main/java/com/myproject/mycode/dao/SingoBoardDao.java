@@ -5,7 +5,7 @@ import java.util.List;
 import com.myproject.mycode.model.ReportReasonModel;
 import com.myproject.mycode.model.SingoModel;
 
-public interface SingoDao {
+public interface SingoBoardDao {
 
 	List<SingoModel> getSingoList(SingoModel singo);
 	

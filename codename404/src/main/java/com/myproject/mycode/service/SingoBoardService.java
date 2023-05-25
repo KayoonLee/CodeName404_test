@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.mycode.dao.SingoDao;
+import com.myproject.mycode.dao.SingoBoardDao;
 import com.myproject.mycode.model.ReportReasonModel;
 import com.myproject.mycode.model.SingoModel;
 
 @Service
-public class SingoService {
+public class SingoBoardService {
 	@Autowired
-	private SingoDao dao; 
+	private SingoBoardDao dao; 
 	
 	public List<SingoModel> getSingoList(SingoModel singo){
 		return dao.getSingoList(singo);

@@ -27,5 +27,20 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		md.updateSingoCount(qna_nick);
 	}
+
+	public MemberModel searchPwd(MemberModel member) {
+		// TODO Auto-generated method stub
+		return md.searchPwd(member);
+	}
+
+	public void updatePwd(MemberModel member) {
+		// TODO Auto-generated method stub
+		md.updatePwd(member);
+	}
+
+	public MemberModel searchId(MemberModel member) {
+		// TODO Auto-generated method stub
+		return md.searchId(member);
+	}
 	
 }

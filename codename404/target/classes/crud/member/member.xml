@@ -11,12 +11,28 @@
 	
 	<!-- 로그인 인증 -->
 	<select id="userCheck" parameterType="String" resultType="member">
-		select * from member where id=#{id}
+		select * from member where id=#{id} and state=1
 	</select>
 
 	<!-- 신고 받은 글작성자 singo_count + 1 -->
 	<update id="updateSingoCount" parameterType="String">
 	update member set singo_count = singo_count +1 where nick = #{qna_nick}
 	</update>
+	
+	<!-- 아이디와 이메일이 DB에 존재하는지 먼저 검사 -->
+	<select id="searchPwd" parameterType="member" resultType="member">
+		select * from member where id=#{id} and nick=#{nick} and state=1
+	</select>
+	
+	 <!-- 임시비밀번호 발급을 위한 업데이트  -->
+	<update id="updatePwd" parameterType="member">
+		update member set passwd=#{passwd} where id=#{id} and nick=#{nick}
+		and state=1
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="searchId" parameterType="member" resultType="member">
+		select * from member where nick=#{nick} and state=1
+	</select>
 
 </mapper>

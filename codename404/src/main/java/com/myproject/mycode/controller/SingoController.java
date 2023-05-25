@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myproject.mycode.model.ReportReasonModel;
 import com.myproject.mycode.model.SingoModel;
-import com.myproject.mycode.service.SingoService;
+import com.myproject.mycode.service.SingoBoardService;
 import com.myproject.mycode.service.adminPaging;
 
 @Controller
 public class SingoController {
 
 	 @Autowired 
-	private SingoService service;
+	private SingoBoardService service;
 	// 해당유저 신고글 리스트
 		@RequestMapping("singo_list.singo")
 		public String singoList(String pageNum, SingoModel singo, Model model) {

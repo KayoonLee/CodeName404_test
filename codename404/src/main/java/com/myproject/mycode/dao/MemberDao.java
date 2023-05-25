@@ -19,5 +19,11 @@ public interface MemberDao {
 	public MemberModel userCheck(String id);
 
 	public void updateSingoCount(String qna_nick);
+
+	public MemberModel searchPwd(MemberModel member);
+
+	public void updatePwd(MemberModel member);
+
+	public MemberModel searchId(MemberModel member);
 	
 }
